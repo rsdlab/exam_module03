@@ -1,0 +1,54 @@
+# exam_module03 CMake config file
+#
+# This file sets the following variables:
+# exam_module03_FOUND - Always TRUE.
+# exam_module03_INCLUDE_DIRS - Directories containing the exam_module03 include files.
+# exam_module03_IDL_DIRS - Directories containing the exam_module03 IDL files.
+# exam_module03_LIBRARIES - Libraries needed to use exam_module03.
+# exam_module03_DEFINITIONS - Compiler flags for exam_module03.
+# exam_module03_VERSION - The version of exam_module03 found.
+# exam_module03_VERSION_MAJOR - The major version of exam_module03 found.
+# exam_module03_VERSION_MINOR - The minor version of exam_module03 found.
+# exam_module03_VERSION_REVISION - The revision version of exam_module03 found.
+# exam_module03_VERSION_CANDIDATE - The candidate version of exam_module03 found.
+
+message(STATUS "Found exam_module03-@PROJECT_VERSION@")
+set(exam_module03_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(exam_module03_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(exam_module03_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(exam_module03_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(exam_module03_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(exam_module03_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(exam_module03_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(exam_module03_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(exam_module03_VERSION @PROJECT_VERSION@)
+set(exam_module03_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(exam_module03_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(exam_module03_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(exam_module03_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+
